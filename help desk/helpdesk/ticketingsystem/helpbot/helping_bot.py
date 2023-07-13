@@ -22,7 +22,7 @@ words = []
 classes = []
 documents = []
 ignore_words = ["?", "!","/","*","#"]
-data_file = open("D:/help desk/helpdesk/ticketingsystem/helpbot/intents.json").read()
+data_file = open("D:/help_desk_git/HelpDesk_Backend/help desk/helpdesk/ticketingsystem/helpbot/intents.json").read()
 intents = json.loads(data_file)
 
 # words

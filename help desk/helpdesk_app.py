@@ -27,15 +27,15 @@ except ImportError as importerr:
 
 
 # chat initialization
-# model = load_model("D:/help desk/chatbot_model.h5")
-# intents = json.loads(open("D:/help desk/helpdesk/ticketingsystem/helpbot/intents.json").read())
-# words = pickle.load(open("D:/help desk/words.pkl", "rb"))
-# classes = pickle.load(open("D:/help desk/classes.pkl", "rb"))
+# model = load_model("D:/help_desk_git/HelpDesk_Backend/help desk/chatbot_model.h5")
+# intents = json.loads(open("D:/help_desk_git/HelpDesk_Backend/help desk/helpdesk/ticketingsystem/helpbot/intents.json").read())
+# words = pickle.load(open("D:/help_desk_git/HelpDesk_Backend/help desk/words.pkl", "rb"))
+# classes = pickle.load(open("D:/help_desk_git/HelpDesk_Backend/help desk/classes.pkl", "rb"))
 
 
 
-CONFIG_FILE_PATH = "D:/help desk/helpdesk/config/"
-CSV_FILE_PATH = "D:/help desk/helpdesk/storage/"
+CONFIG_FILE_PATH = "D:/help_desk_git/HelpDesk_Backend/help desk/helpdesk/config/"
+CSV_FILE_PATH = "D:/help_desk_git/HelpDesk_Backend/help desk/helpdesk/storage/"
 CONFIG_FILE_NAME = ''
 CON_ENVIRONMENT = ''
 myapi = launcher.SystemLauncher(storage_path=CSV_FILE_PATH,config_name=CONFIG_FILE_NAME,config_path=CONFIG_FILE_PATH)

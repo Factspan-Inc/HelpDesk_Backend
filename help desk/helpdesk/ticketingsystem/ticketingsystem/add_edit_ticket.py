@@ -146,8 +146,8 @@ class NewTickets():
             if isinstance(user_data,str):
                 user_data=eval(user_data)
                 
-            user_id=user_data[0]['USER_ID']
-            user_name=user_data[0]['USER_NAME']        
+            user_id=user_data['USER_ID']
+            user_name=user_data['USER_NAME']        
         
             ticket_data_df = pd.DataFrame.from_dict(ticket_data)
             user_tickets_df = pd.read_csv(filepath_or_buffer=self.storage_path+"ticket_data.csv")

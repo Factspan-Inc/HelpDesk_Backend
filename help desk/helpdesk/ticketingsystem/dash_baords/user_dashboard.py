@@ -122,14 +122,15 @@ class UserDashboard():
             ticket_data_df=ticket_data_df.fillna('')
             # ticket_data_df=ticket_data_df.replace('0','')
             print(1)
-            raised_tickets_df=ticket_data_df[ticket_data_df['RAISED_BY']==user_id]
-            assigned_tickets_df=ticket_data_df[ticket_data_df['ASSIGNED_TO']==user_id]
+            raised_tickets_df=ticket_data_df[ticket_data_df['RAISED_BY']==str(user_id)]
+            assigned_tickets_df=ticket_data_df[ticket_data_df['ASSIGNED_TO']==str(user_id)]
             
-            assigned_by_user_df=ticket_data_df[ticket_data_df['ASSIGNED_BY']==user_id]
+            assigned_by_user_df=ticket_data_df[ticket_data_df['ASSIGNED_BY']==str(user_id)]
             unassigned_tickets=ticket_data_df[(ticket_data_df['ASSIGNED_TO'].isnull()) | (ticket_data_df['ASSIGNED_TO'].isin(['',' ','0',0]))]
             # print(ticket_data_df['ASSIGNED_TO'])
             user_data_df=user_data_df.fillna('')
-            each_user_data_df=user_data_df[user_data_df['USER_ID']==user_id]
+            print(user_data_df.info())
+            each_user_data_df=user_data_df[user_data_df['USER_ID']==str(user_id)]
             user_dashboard_data=each_user_data_df.to_dict(orient='records')
             if len(user_dashboard_data)==0:
                 message = {"Response":"Fail",
