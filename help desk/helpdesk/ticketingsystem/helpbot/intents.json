@@ -1,0 +1,58 @@
+{"intents": [
+    {"tag": "greeting",
+     "patterns": ["Hi there", "How are you", "Is anyone there?","Hey","Hola", "Hello", "Good day"],
+     "responses": ["Hello, thanks for asking", "Good to see you again", "Hi there, how can I help?","Hi","Namaste"],
+     "context": [""]
+    },
+    {"tag": "goodbye",
+     "patterns": ["Bye", "See you later", "Goodbye", "Nice chatting to you, bye", "Till next time"],
+     "responses": ["See you!", "Have a nice day", "Bye! Come back again soon."],
+     "context": [""]
+    },
+    {"tag": "thanks",
+     "patterns": ["Cool","Thankyou for your help","Thanks", "Thank you", "That's helpful", "Awesome, thanks", "Thanks for helping me","Thanks for your support"],
+     "responses": ["Happy to help!", "Any time!", "My pleasure","Let me know, if you have any other concerns"],
+     "context": [""]
+    },
+    {"tag": "noanswer",
+     "patterns": ["Problem","Issue","Failing","Shutting Down","Need","Need help","Help","Help me"],
+     "responses": ["Sorry, can't understand you", "Please give me more info", "Not sure I understand","Could you please elaborate","Come again"],
+     "context": [""]
+    },
+    {"tag": "options",
+     "patterns": ["How you could help me?", "What you can do?", "What help you provide?", "How you can be helpful?", "What support is offered"],
+     "responses": ["I can guide you through Software installation process", "I can help you in raising a ticket", "I can check your ticket status"],
+     "context": [""]
+    },
+    {"tag": "tickets",
+     "patterns": ["How to raise ticket?", "How to check ticket status", "List of all open tickets", "List of all Technical tickets", "List of all closed tickets","List of all pending tickets" ],
+     "responses": ["Please login and open tickets section","Go to open tickets section","Go to my tickets",""],
+     "context": [""]
+    },
+    {"tag": "Technical issue",
+     "patterns": ["Need help from Techinal team","Hardware not working", "Keyboard not working", "Display not working", "Touchpad not working","Water in display","Unwanted sound from laptop fan","Heating issue","Too much fan sound","Frequent system restart","Need a new software" ],
+     "responses": ["Raise a IT Ticket under Technical section","Reach out to IT Team","You can raise IT Ticket"],
+     "context": [""]
+    },
+    {"tag": "HR",
+     "patterns": ["Need help from HR","My personal details are incorrect", "Join date is incorrect", "Surname incorrect", "Job role incorrect","Please check my job role","Please check my role","Please check my designation" ],
+     "responses": ["Raise a ticket under HR section","Reach out to HR Services","You can reach out to HR Department (if urgent)","Please check with HRs"],
+     "context": [""]
+    },
+    {"tag": "Finance",
+     "patterns": ["Need help from Finance team","Reimbursements not provided","Claim rejected","Claims not viewed","rejected my claim","claim not forwarded","claim not received","salary not credited"],
+     "responses": ["Raise a ticket under Finance section","Reach out to Finance Department",""],
+     "context": ["Open tickets"]
+    },
+    {"tag": "Open tickets",
+     "patterns": ["Find my ticket", "Show all open tickets","Show all HR Tickets","Show all Finance tickets","List of all open tickets", "Locate HR Tickets" ,"Locate all Technical Tickets","Locate all Finance tickets"],
+     "responses": ["Please login","Login to view tickets"],
+     "context": ["search ticket by type"]
+    },
+    {"tag": "search ticket by type",
+     "patterns": [],
+     "responses": ["Loading ticket details"],
+     "context": [""]
+    }
+]
+}
