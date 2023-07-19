@@ -67,22 +67,34 @@ class SystemLauncher():
 
         
 
-    def checkaccess(self,mail_id):
+    def checkaccess(self,payload,mail_id=None):
         try:
-            user_data_df = pd.read_csv(filepath_or_buffer=self.storage_path+"user_details.csv")
-            user_class_df = pd.read_csv(filepath_or_buffer=self.storage_path+"user_type.csv")
-            user_data_df = pd.merge(left=user_data_df,right=user_class_df,how='inner',on='USER_CLASS_ID')
-            user_data_df['ACCESS_TYPE'] = user_data_df["ACCESS_TYPE"].apply(lambda x:x.split(","))
-            if not user_data_df.empty:
-                specific_user_data = user_data_df[(user_data_df['EMAIL_ID']==mail_id)]
-                if len(specific_user_data) > 0:
-                    access_data = {'Access':'Granted'}
-                    access_data.update(specific_user_data.to_dict(orient="records")[0])
-                else:
-                    access_data = {'Access':'Denied'}
+            try:
+                mail_id=payload['mail_id']
+            except:
+                mail_id=None
+            if mail_id is None:
+                # access denied
+                response_data = {"Access": "Denied"}
             else:
-                access_data = {'Access':'Denied'}
+
+                domain_name = mail_id[mail_id.find("@")+1:]
+                if domain_name in ("factspan.com"):
+                    user_data_df = pd.read_csv(filepath_or_buffer=self.storage_path+"user_details.csv")
+                    user_class_df = pd.read_csv(filepath_or_buffer=self.storage_path+"user_type.csv")
+                    user_data_df = pd.merge(left=user_data_df,right=user_class_df,how='inner',on='USER_CLASS_ID')
+                    user_data_df['ACCESS_TYPE'] = user_data_df["ACCESS_TYPE"].apply(lambda x:x.split(","))
+                    if not user_data_df.empty:
+                        specific_user_data = user_data_df[(user_data_df['EMAIL_ID']==mail_id)]
+                        if len(specific_user_data) > 0:
+                            access_data = {'Access':'Granted'}
+                            access_data.update(specific_user_data.to_dict(orient="records")[0])
+                        else:
+                            access_data = {'Access':'Denied'}
+                    else:
+                        access_data = {'Access':'Denied'}
             final_data = [access_data]
             return final_data
         except Exception as err:
             return "Error : "+str(err)
+        
