@@ -34,8 +34,8 @@ except ImportError as importerr:
 
 
 
-CONFIG_FILE_PATH = "C:/Users/chandrakanti.shiva/Documents/GitHub/HelpDesk_Backend/help desk/helpdesk/config"
-CSV_FILE_PATH = "C:/Users/chandrakanti.shiva/Documents/GitHub/HelpDesk_Backend/help desk/helpdesk/storage/"
+CONFIG_FILE_PATH = "D:/help_desk_git/HelpDesk_Backend/help desk/helpdesk/config/"
+CSV_FILE_PATH = "D:/help_desk_git/HelpDesk_Backend/help desk/helpdesk/storage/"
 CONFIG_FILE_NAME = ''
 CON_ENVIRONMENT = ''
 myapi = launcher.SystemLauncher(storage_path=CSV_FILE_PATH,config_name=CONFIG_FILE_NAME,config_path=CONFIG_FILE_PATH)
@@ -148,7 +148,7 @@ def login_is_required():
 
             domain_name = mail_id[mail_id.find("@")+1:]
             if domain_name in ("factspan.com"):
-                response_data = myapi.checkaccess(payload=request_data,mail_id=mail_id)
+                response_data = myapi.checkaccess(mail_id=mail_id)
             else:
                 # access denied
                 response_data = {"Access": "Denied"}
