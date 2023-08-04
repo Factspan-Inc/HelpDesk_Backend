@@ -82,7 +82,12 @@ class SystemLauncher():
                 if domain_name in ("factspan.com"):
                     user_data_df = pd.read_csv(filepath_or_buffer=self.storage_path+"user_details.csv")
                     user_class_df = pd.read_csv(filepath_or_buffer=self.storage_path+"user_type.csv")
+                    user_data_df['USER_CLASS_ID']=user_data_df['USER_CLASS_ID'].astype(str)
+                    print(user_data_df[user_data_df['USER_ID']==1003])
+                    user_class_df['USER_CLASS_ID']=user_class_df['USER_CLASS_ID'].astype(str)
+                    print(user_class_df)
                     user_data_df = pd.merge(left=user_data_df,right=user_class_df,how='inner',on='USER_CLASS_ID')
+                    print(user_data_df[user_data_df['USER_ID']=='1003'])
                     user_data_df['ACCESS_TYPE'] = user_data_df["ACCESS_TYPE"].apply(lambda x:x.split(","))
                     if not user_data_df.empty:
                         specific_user_data = user_data_df[(user_data_df['EMAIL_ID']==mail_id)]
