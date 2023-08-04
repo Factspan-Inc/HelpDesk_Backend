@@ -16,22 +16,18 @@ class SystemLauncher():
         self.config_path = config_path
         self.config_name = config_name
 
-    def check_page(self,page_name=None):
+    def check_page(self,page_name=None,request_data=None):
 
         if page_name is not None:
             if page_name == "form_details":
                 data = all_drop_down.All_dropdown(storage_path=self.storage_path).form_details()
             elif page_name == "add_ticket":
-                request_data = request.get_json()
-                if request_data is None:
-                    request_data = request.form
+                
                 ticket_data = request_data['ticket_data']
                 user_data=request_data['user_details']
                 data = add_edit_ticket.NewTickets(storage_path=self.storage_path).raise_concern(user_data=user_data,ticket_data=ticket_data)
             elif page_name == "edit_ticket":
-                request_data = request.get_json()
-                if request_data is None:
-                    request_data = request.form
+               
                 ticket_data = request_data['ticket_data']
                 user_data=request_data['user_details']
                 data = add_edit_ticket.NewTickets(storage_path=self.storage_path).raise_concern(edit="YES",user_data=user_data,ticket_data=ticket_data)
@@ -48,22 +44,23 @@ class SystemLauncher():
                 "Message":"Please provide the page name"
             }
         return data
+    
 
-    def execute(self):
+    # def execute(self):
 
-        try:
-            request_data = request.get_json()
-            if request_data is None:
-                request_data = request.form
-            page_name = request_data['page_name']
-        except BadRequest as baderr:
-            print("Bad request : ",str(baderr))
-            request_data = request.get_json(force=True)
-            if request_data is None:
-                request_data = request.form
-            page_name = request_data['page_name']
-        data = self.check_page(page_name=page_name)
-        return data
+    #     try:
+    #         request_data = request.get_json()
+    #         if request_data is None:
+    #             request_data = request.form
+    #         page_name = request_data['page_name']
+    #     except BadRequest as baderr:
+    #         print("Bad request : ",str(baderr))
+    #         request_data = request.get_json(force=True)
+    #         if request_data is None:
+    #             request_data = request.form
+    #         page_name = request_data['page_name']
+    #     data = self.check_page(page_name=page_name)
+    #     return data
 
         
 

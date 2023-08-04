@@ -40,6 +40,12 @@ class UserDashboard():
             ticket_data_df=ticket_data_df.drop(['USER_ID'],axis=1)
             ticket_data_df.rename(columns={'USER_NAME':'ASSIGNED_BY_NAME'},inplace = True)
             
+            ticket_data_df = pd.merge(ticket_data_df,user_data_df[['USER_ID','USER_NAME']],
+                                      how='left',left_on='RAISED_FOR_ID',right_on='USER_ID')
+            
+            ticket_data_df=ticket_data_df.drop(['USER_ID'],axis=1)
+            ticket_data_df.rename(columns={'USER_NAME':'RAISED_FOR_NAME'},inplace = True)
+            
            
             return ticket_data_df
             
@@ -126,6 +132,7 @@ class UserDashboard():
             assigned_tickets_df=ticket_data_df[ticket_data_df['ASSIGNED_TO']==str(user_id)]
             
             assigned_by_user_df=ticket_data_df[ticket_data_df['ASSIGNED_BY']==str(user_id)]
+            raised_for_me_df=ticket_data_df[(ticket_data_df['RAISED_FOR_ID']==str(user_id)) & (ticket_data_df['REAUEST_TYPE'].str.upper()=='OTHERS')]
             unassigned_tickets=ticket_data_df[(ticket_data_df['ASSIGNED_TO'].isnull()) | (ticket_data_df['ASSIGNED_TO'].isin(['',' ','0',0]))]
             # print(ticket_data_df['ASSIGNED_TO'])
             user_data_df=user_data_df.fillna('')
@@ -139,6 +146,7 @@ class UserDashboard():
                 user_dashboard_data[0]['TICKETS_RAISED_BY_USER']=raised_tickets_df.to_dict(orient='records')
                 user_dashboard_data[0]['TICKETS_ASSIGNED_TO_USER']=assigned_tickets_df.to_dict(orient='records')
                 user_dashboard_data[0]['TICKETS_ASSIGNED_BY_USER']=assigned_by_user_df.to_dict(orient='records')
+                user_dashboard_data[0]['RAISED_FOR_ME']=raised_for_me_df.to_dict(orient='records')
 
                 if user_class.upper() =='ADMIN':
                     user_dashboard_data[0]['UNASSIGNED_TICKETS']=ticket_data_df.to_dict(orient='records')

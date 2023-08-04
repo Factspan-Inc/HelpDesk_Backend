@@ -47,7 +47,21 @@ def check_access():
     except Exception as err:
         print("error while calling api to check user access :",err)
         return "error while calling api to check user access :"+str(err)
-
+    
+@my_app.route("/help_desk",methods=['POST'])
+def help_desk_functions():
+    try:
+        print("check check")
+        requested_data=  my_api.request_maker(method='POST')
+        page_name =requested_data['page_name']
+        data=my_launcher.check_page(page_name=page_name,request_data=requested_data)
+        api_response=my_api.json_response(data=data)
+        return api_response
+    except Exception as err:
+        print("error while calling api to help desk functions :",err)
+        return "error while calling api to help desk functions :"+str(err)
+    
+        
 if __name__ == '__main__':
     my_api.flash_server_start(debug=True)
     # http_server.serve_forever()
