@@ -16,8 +16,8 @@ class UserDashboard():
             user_data_df[['USER_ID','USER_CLASS_ID']]=user_data_df[['USER_ID','USER_CLASS_ID']].astype(int)
             user_data_df[['USER_ID','USER_CLASS_ID']]=user_data_df[['USER_ID','USER_CLASS_ID']].astype(str)
             
-            ticket_data_df[['USER_ID','RAISED_BY','ASSIGNED_TO','ASSIGNED_BY']]=ticket_data_df[['USER_ID','RAISED_BY','ASSIGNED_TO','ASSIGNED_BY']].astype(int)
-            ticket_data_df[['USER_ID','RAISED_BY','ASSIGNED_TO','ASSIGNED_BY']]=ticket_data_df[['USER_ID','RAISED_BY','ASSIGNED_TO','ASSIGNED_BY']].astype(str)
+            ticket_data_df[['USER_ID','RAISED_BY','ASSIGNED_TO','ASSIGNED_BY','RAISED_FOR_ID']]=ticket_data_df[['USER_ID','RAISED_BY','ASSIGNED_TO','ASSIGNED_BY','RAISED_FOR_ID']].astype(int)
+            ticket_data_df[['USER_ID','RAISED_BY','ASSIGNED_TO','ASSIGNED_BY','RAISED_FOR_ID']]=ticket_data_df[['USER_ID','RAISED_BY','ASSIGNED_TO','ASSIGNED_BY','RAISED_FOR_ID']].astype(str)
             
             ticket_data_df=ticket_data_df.drop(['USER_ID'],axis=1)
             ticket_data_df = pd.merge(ticket_data_df,user_data_df[['USER_ID','USER_NAME']],
@@ -132,7 +132,7 @@ class UserDashboard():
             assigned_tickets_df=ticket_data_df[ticket_data_df['ASSIGNED_TO']==str(user_id)]
             
             assigned_by_user_df=ticket_data_df[ticket_data_df['ASSIGNED_BY']==str(user_id)]
-            raised_for_me_df=ticket_data_df[(ticket_data_df['RAISED_FOR_ID']==str(user_id)) & (ticket_data_df['REAUEST_TYPE'].str.upper()=='OTHERS')]
+            raised_for_me_df=ticket_data_df[(ticket_data_df['RAISED_FOR_ID']==str(user_id)) & (ticket_data_df['REQUEST_TYPE'].str.upper()=='OTHERS')]
             unassigned_tickets=ticket_data_df[(ticket_data_df['ASSIGNED_TO'].isnull()) | (ticket_data_df['ASSIGNED_TO'].isin(['',' ','0',0]))]
             # print(ticket_data_df['ASSIGNED_TO'])
             user_data_df=user_data_df.fillna('')
