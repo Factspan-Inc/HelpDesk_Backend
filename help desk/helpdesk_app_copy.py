@@ -25,7 +25,6 @@ except ImportError as importerr:
 # classes = pickle.load(open("D:/help_desk_git/HelpDesk_Backend/help desk/classes.pkl", "rb"))
 
 
-
 CONFIG_FILE_PATH = "C:/Users/chandrakanti.shiva/Documents/GitHub/HelpDesk_Backend/help desk/helpdesk/config/"
 CSV_FILE_PATH = "C:/Users/chandrakanti.shiva/Documents/GitHub/HelpDesk_Backend/help desk/helpdesk/storage/"
 CONFIG_FILE_NAME = ''
