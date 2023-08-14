@@ -25,7 +25,7 @@ class Conversation():
             if isinstance(user_data,str):
                 user_data=eval(user_data)
                 
-            user_id=user_data[0]['USER_ID']
+            user_id=user_data['USER_ID']
             
             conversation_data_df = pd.DataFrame.from_dict(conversation_data)
             conversation_data_df['USER_ID']=user_id
@@ -39,6 +39,9 @@ class Conversation():
             
             prepared_conversation_df = pd.concat([user_conversation_df,conversation_data_df])
             prepared_conversation_df.to_csv(self.storage_path+"user_conversation.csv",index=False)
+            
+            message ={"response":"Success"}
+            return message
             
         except Exception as err:
             print("error while capturing conersation for ticket :",err)
