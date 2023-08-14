@@ -1,4 +1,3 @@
 TICKET_ID,TICKET_TYPE,TICKET_DESCRIPTION
 2001,TECHNICAL,"Hardware issue,Require Installation, Software issue"
-2002,HR,Employee details incorrect
-2003,FINANCE,"Salary related issue,Reimbursement"
+2002,RRE,"Production bug, deployement, data correction"

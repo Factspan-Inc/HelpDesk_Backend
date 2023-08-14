@@ -1,5 +1,4 @@
 USER_CLASS_ID,USER_CLASS,ACCESS_TYPE
 1001,ADMIN,Full Access
 1003,IT_TEAM,"Ticket create, Ticket edit, Ticket view"
-1004,HR_TEAM,"Ticket create, Ticket edit, Ticket view"
-1005,FINANCE_TEAM,"Ticket create, Ticket edit, Ticket view"
+1004,RRE_TEAM,"Ticket create, Ticket edit, Ticket view"

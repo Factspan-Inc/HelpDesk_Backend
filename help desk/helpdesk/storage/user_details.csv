@@ -4,7 +4,7 @@ USER_ID,USER_NAME,USER_CLASS_ID,EMAIL_ID
 1003,Sankalp,1003,ashritha.ka@factspan.com
 1004,Rakesh,1003,Rakesh1004@factspan.com
 1005,Ramesh,1004,Ramesh1005@factspan.com
-1006,Rajesh,1005,Rajesh1006@factspan.com
+1006,Rajesh,1004,Rajesh1006@factspan.com
 1007,Vishal,1003,Vishal1007@factspan.com
 1008,Rajesh,1003,Rajesh1008@factspan.com
 1009,Rakesh,1003,Rakesh1009@factspan.com
@@ -14,11 +14,11 @@ USER_ID,USER_NAME,USER_CLASS_ID,EMAIL_ID
 1013,Sam,1003,Sam1013@factspan.com
 1014,Jennifer,1003,Jennifer1014@factspan.com
 1015,Matt,1003,Matt1015@factspan.com
-1016,Jennifer,1006,Jennifer1016@factspan.com
-1017,George,1006,George1017@factspan.com
-1018,Ann,1006,Ann1018@factspan.com
-1019,George,1006,George1019@factspan.com
-1020,Sam,1006,Sam1020@factspan.com
+1016,Jennifer,1004,Jennifer1016@factspan.com
+1017,George,1004,George1017@factspan.com
+1018,Ann,1004,Ann1018@factspan.com
+1019,George,1004,George1019@factspan.com
+1020,Sam,1004,Sam1020@factspan.com
 1021,Matt,1003,Matt1021@factspan.com
 1022,Ann,1003,Ann1022@factspan.com
 1023,Sam,1003,Sam1023@factspan.com
