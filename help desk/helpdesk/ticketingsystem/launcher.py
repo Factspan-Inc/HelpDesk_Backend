@@ -27,7 +27,11 @@ class SystemLauncher():
                 user_data=request_data['user_details']
                 data = add_edit_ticket.NewTickets(storage_path=self.storage_path).raise_concern(user_data=user_data,ticket_data=ticket_data)
             elif page_name == "edit_ticket":
-               
+                """payload= {"page_name":"edit_ticket","mail_id":"deepesh.vishwakarma@factspan.com","user_details":{"Access":"Granted","USER_ID":1002,"USER_NAME":"Deepesh","USER_CLASS_ID":1003,"EMAIL_ID":"deepesh.vishwakarma@factspan.com","USER_CLASS":"IT_TEAM","ACCESS_TYPE":["Ticket create"," Ticket edit"," Ticket view"]},"ticket_data":[{"TICKET_ID":"2002","PROBLEM_DESCRIPTION":"Joining Date",
+                                "REQUEST_TYPE":"self",
+                                "RAISED_FOR_ID":"1002",
+                                "TICKET_NUMBER":"T13",
+                                "ASSIGNED_TO":"1003"}]}"""
                 ticket_data = request_data['ticket_data']
                 user_data=request_data['user_details']
                 data = add_edit_ticket.NewTickets(storage_path=self.storage_path).raise_concern(edit="YES",user_data=user_data,ticket_data=ticket_data)
