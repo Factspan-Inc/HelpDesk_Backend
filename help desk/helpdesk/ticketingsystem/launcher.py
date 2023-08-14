@@ -24,17 +24,20 @@ class SystemLauncher():
             elif page_name == "add_ticket":
                 
                 ticket_data = request_data['ticket_data']
-                user_data=request_data['user_details']
+                user_data=request_data['user_details'][0]
                 data = add_edit_ticket.NewTickets(storage_path=self.storage_path).raise_concern(user_data=user_data,ticket_data=ticket_data)
             elif page_name == "edit_ticket":
                
                 ticket_data = request_data['ticket_data']
-                user_data=request_data['user_details']
+                user_data=request_data['user_details'][0]
                 data = add_edit_ticket.NewTickets(storage_path=self.storage_path).raise_concern(edit="YES",user_data=user_data,ticket_data=ticket_data)
             elif page_name == "user_dashboard":
-                data = user_dashboard.UserDashboard(storage_path=self.storage_path).user_dashboard()
+                user_data=request_data['user_details'][0]
+                data = user_dashboard.UserDashboard(storage_path=self.storage_path).user_dashboard(user_data=user_data)
             elif page_name == "ticket_conversation":
-                data = ticket_conversation.Conversation(storage_path=self.storage_path).capture_user_conversation()
+                conversation_data = request_data['conversation_data']
+                user_data=request_data['user_details'][0]
+                data = ticket_conversation.Conversation(storage_path=self.storage_path).capture_user_conversation(conversation_data=conversation_data,user_data=user_data)
             else:
                 data = {
                     "Message":"Page not found"

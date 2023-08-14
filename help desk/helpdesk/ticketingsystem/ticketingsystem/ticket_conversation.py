@@ -11,26 +11,23 @@ class Conversation():
     def __init__(self,storage_path=None):
         self.storage_path = storage_path
 
-    def capture_user_conversation(self):
+    def capture_user_conversation(self,conversation_data=None,user_data=None):
 
         """
         This function will be used to capture the conversation
         """
         try:
-            request_data = request.get_json()
-            if request_data is None:
-                request_data = request.form
-            conersation_data = request_data['conersation_data']
-            if isinstance(conersation_data,str):
-                conersation_data=eval(conersation_data)
+
+            
+            if isinstance(conversation_data,str):
+                conversation_data=eval(conversation_data)
                 
-            user_data=request_data['user_details']
             if isinstance(user_data,str):
                 user_data=eval(user_data)
                 
             user_id=user_data[0]['USER_ID']
             
-            conversation_data_df = pd.DataFrame.from_dict(conersation_data)
+            conversation_data_df = pd.DataFrame.from_dict(conversation_data)
             conversation_data_df['USER_ID']=user_id
             conversation_data_df['COMMENTED_ON']=current_date
             

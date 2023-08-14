@@ -170,6 +170,7 @@ class NewTickets():
                 ticket_data_df['ASSIGNED_TO']=self.ticket_assignment(ticket_id=ticket_id)
                 ticket_data_df['ASSIGNED_ON']=current_date
                 ticket_data_df['ASSIGNED_BY']='1001'
+                ticket_data_df['TICKET_STATUS']='Open'
                 ticket_no="T"+str(new_ticket_no)
                 assigned_to='Not Assigned'
             else:
@@ -183,7 +184,7 @@ class NewTickets():
                 if assigned_to!=prev_assigned_to:
                     ticket_data_df['ASSIGNED_ON']=current_date
                     ticket_data_df['ASSIGNED_BY']=user_id
-                    ticket_data_df['TICKET_STATUS']='Active'
+                    # ticket_data_df['TICKET_STATUS']='Active'
                 ticket_data_df['UPDATED_ON']=current_date
                 ticket_data_df['UPDATED_BY']=user_id
                 

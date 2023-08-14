@@ -20,31 +20,35 @@ class UserDashboard():
             ticket_data_df[['USER_ID','RAISED_BY','ASSIGNED_TO','ASSIGNED_BY','RAISED_FOR_ID']]=ticket_data_df[['USER_ID','RAISED_BY','ASSIGNED_TO','ASSIGNED_BY','RAISED_FOR_ID']].astype(str)
             
             ticket_data_df=ticket_data_df.drop(['USER_ID'],axis=1)
-            ticket_data_df = pd.merge(ticket_data_df,user_data_df[['USER_ID','USER_NAME']],
+            ticket_data_df = pd.merge(ticket_data_df,user_data_df[['USER_ID','USER_NAME','EMAIL_ID']],
                                       how='left',left_on='RAISED_BY',right_on='USER_ID')
             
             ticket_data_df=ticket_data_df.drop(['USER_ID'],axis=1)
             
-            ticket_data_df.rename(columns={'USER_NAME':'RAISED_BY_NAME'},inplace = True)
+            ticket_data_df.rename(columns={'USER_NAME':'RAISED_BY_NAME',
+                                           'EMAIL_ID':'RAISED_BY_MAIL'},inplace = True)
             
-            ticket_data_df = pd.merge(ticket_data_df,user_data_df[['USER_ID','USER_NAME']],
+            ticket_data_df = pd.merge(ticket_data_df,user_data_df[['USER_ID','USER_NAME','EMAIL_ID']],
                                       how='left',left_on='ASSIGNED_TO',right_on='USER_ID')
             
             
             ticket_data_df=ticket_data_df.drop(['USER_ID'],axis=1)
-            ticket_data_df.rename(columns={'USER_NAME':'ASSIGNED_TO_NAME'},inplace = True)
+            ticket_data_df.rename(columns={'USER_NAME':'ASSIGNED_TO_NAME',
+                                           'EMAIL_ID':'ASSIGNED_TO_MAIL'},inplace = True)
             
-            ticket_data_df = pd.merge(ticket_data_df,user_data_df[['USER_ID','USER_NAME']],
+            ticket_data_df = pd.merge(ticket_data_df,user_data_df[['USER_ID','USER_NAME','EMAIL_ID']],
                                       how='left',left_on='ASSIGNED_BY',right_on='USER_ID')
             
             ticket_data_df=ticket_data_df.drop(['USER_ID'],axis=1)
-            ticket_data_df.rename(columns={'USER_NAME':'ASSIGNED_BY_NAME'},inplace = True)
+            ticket_data_df.rename(columns={'USER_NAME':'ASSIGNED_BY_NAME',
+                                           'EMAIL_ID':'ASSIGNED_BY_MAIL'},inplace = True)
             
-            ticket_data_df = pd.merge(ticket_data_df,user_data_df[['USER_ID','USER_NAME']],
+            ticket_data_df = pd.merge(ticket_data_df,user_data_df[['USER_ID','USER_NAME','EMAIL_ID']],
                                       how='left',left_on='RAISED_FOR_ID',right_on='USER_ID')
             
             ticket_data_df=ticket_data_df.drop(['USER_ID'],axis=1)
-            ticket_data_df.rename(columns={'USER_NAME':'RAISED_FOR_NAME'},inplace = True)
+            ticket_data_df.rename(columns={'USER_NAME':'RAISED_FOR_NAME',
+                                           'EMAIL_ID':'RAISED_FOR_MAIL'},inplace = True)
             
            
             return ticket_data_df
@@ -68,14 +72,11 @@ class UserDashboard():
             print("error while preparing user drop down :",err)
             return "error while preparing user drop down :"+str(err)
     
-    def user_dashboard(self):
+    def user_dashboard(self,user_data=None):
         
         try:
             
-            request_data = request.get_json()
-            if request_data is None:
-                request_data = request.form
-            user_data = request_data['user_details']
+            user_data = user_data
             if isinstance(user_data,str):
                 user_data=eval(user_data)
             user_id=user_data['USER_ID']
@@ -149,8 +150,10 @@ class UserDashboard():
                 user_dashboard_data[0]['RAISED_FOR_ME']=raised_for_me_df.to_dict(orient='records')
 
                 if user_class.upper() =='ADMIN':
-                    user_dashboard_data[0]['UNASSIGNED_TICKETS']=ticket_data_df.to_dict(orient='records')
+                    user_dashboard_data[0]['ALL_TICKETS']=ticket_data_df.to_dict(orient='records')
+                    user_dashboard_data[0]['UNASSIGNED_TICKETS']=unassigned_tickets.to_dict(orient='records')
                 else:
+                    user_dashboard_data[0]['ALL_TICKETS']=[]
                     user_dashboard_data[0]['UNASSIGNED_TICKETS']=[]
                     
                 user_drop_down = self.user_drop_down(user_data_df=user_data_df)
